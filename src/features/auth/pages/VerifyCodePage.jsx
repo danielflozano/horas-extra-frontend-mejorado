@@ -1,7 +1,6 @@
 import { GlobalButton } from '@/components';
-import { AuthLayout } from '../components/AuthLayout';
-import { SuccessErrorMessage } from '../components/SuccessErrorMessage';
 import { useRecoverPassword } from '../hooks/useRecoverPassword';
+import { AuthInput, AuthLayout, SuccessErrorMessage } from '../components';
 
 export const VerifyCodePage = () => {
   const {
@@ -16,21 +15,15 @@ export const VerifyCodePage = () => {
     <AuthLayout title="Recuperar Contraseña">
       <SuccessErrorMessage message={accessErrorMessages} />
       <form onSubmit={handleSubmit(onSubmitVerifyCode)}>
-        <div className="pb-4">
-          <label className="text-epaColor1 block pb-2 font-medium">
-            Código de verificación
-          </label>
-          <input
-            type="text"
-            className="w-full p-1 border border-epaColor1 rounded-md"
-            {...register('codigo', {
-              required: 'El código es obligatorio',
-            })}
-          />
-          {errors.codigo && (
-            <p className="text-red-500 text-sm">{errors.codigo.message}</p>
-          )}
-        </div>
+        <AuthInput
+          label='Código de verificación'
+          data='codigo'
+          register={register}
+          errors={errors} 
+          rules={{
+            required: 'El código es obligatorio',
+          }}
+        />
         <GlobalButton type='submit' className='w-full p-1.5'>
           Verificar código
         </GlobalButton>

@@ -28,7 +28,7 @@ export const setupInterceptors = (logout) => {
           localStorage.setItem('accessToken', newAccessToken);
           localStorage.setItem('user', JSON.stringify(newUser));
           apiClient.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
-          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;    
+          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;  
 
           return apiClient(originalRequest);
         } catch (error) {

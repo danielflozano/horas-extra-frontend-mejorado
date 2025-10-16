@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import { AuthLayout } from '../components/AuthLayout';
 import { useLogin } from '../hooks/useLogin';
 import { GlobalButton } from '@/components';
-import { useAuth } from '@/context/AuthContext';
+import { AuthInput, AuthLayout } from '../components';
 
 export const LoginPage = () => {
   const { register, handleSubmit, errors, loading, apiError, onSubmit } = useLogin();
@@ -27,38 +26,30 @@ export const LoginPage = () => {
             <span className="block sm:inline">{apiError}</span>
           </div>
         )}
-        <div className="pb-4">
-          <label className="text-epaColor1 block pb-2 font-medium">
-            Correo Electronico
-          </label>
-          <input
-            type="email"
-            className="w-full p-1 border border-epaColor1 rounded-md"
-            {...register('email', {
-              required: 'El correo electronico es obligatorio',
-            })}
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
-          )}
-        </div>
-
-        <div className="pb-4">
-          <label className="text-epaColor1 block pb-2 font-medium">
-            Contraseña
-          </label>
-          <input
-            type="password"
-            className="w-full p-1 border border-epaColor1 rounded-md"
-            {...register('password', {
-              required: 'La contraseña es obligatoria',
-              minLength: { value: 8, message: 'Minimo 8 caracteres' },
-            })}
-          />
-          {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password.message}</p>
-          )}
-        </div>
+        <AuthInput
+          label='Correo Electrónico'
+          data='email'
+          register={register}
+          errors={errors} 
+          rules={{
+            required: 'El correo electronico es obligatorio',
+            pattern: {
+              value: /^\S+@\S+\.\S+$/,
+              message: "Correo electrónico no válido",
+            }
+          }}
+        />
+        <AuthInput
+          type='password'
+          label='Contraseña'
+          data='password'
+          register={register}
+          errors={errors} 
+          rules={{
+            required: 'La contraseña es obligatoria',
+            minLength: { value: 8, message: 'Minimo 8 caracteres' },
+          }}
+        />
         <GlobalButton type="submit" className="w-full p-1.5 mb-4">
           Iniciar Sesión
         </GlobalButton>
