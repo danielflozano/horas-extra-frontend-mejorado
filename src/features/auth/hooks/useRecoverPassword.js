@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { authService } from '../services/authService';
 import { useAuth } from '@/context/AuthContext';
+import listRoutes from '@/routes/list';
 
 export const useRecoverPassword = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const useRecoverPassword = () => {
       const response = await authService.solicitarResetPassword(data);
       setAccessErrorMessages({ type: 'success', text: response.msg });
       setEmail(data.email)
-      navigate('/recover/code');
+      navigate(listRoutes.auth.code);
     } catch (error) {
       console.error(error);
       setAccessErrorMessages({ type: 'error', text: error.message });
@@ -40,7 +41,7 @@ export const useRecoverPassword = () => {
         codigo: data.codigo,
       });
       setAccessErrorMessages({ type: 'success', text: response.msg });
-      navigate('/recover/reset');
+      navigate(listRoutes.auth.reset);
     } catch (error) {
       setAccessErrorMessages({ type: 'error', text: error.message });
       reset();
@@ -52,7 +53,7 @@ export const useRecoverPassword = () => {
       const response = await authService.resetPassword(data);
       setAccessErrorMessages({ type: 'success', text: response.msg });
       setTimeout(() => {
-        navigate('/login');
+        navigate(listRoutes.auth.login);
         setAccessErrorMessages('');
       }, 2000);
     } catch(error) {

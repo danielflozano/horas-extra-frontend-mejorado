@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import { useLogin } from '../hooks/useLogin';
 import { GlobalButton } from '@/components';
 import { AuthInput, AuthLayout } from '../components';
+import listRoutes from '@/routes/list';
+import { Profiler } from 'react';
+import { onRenderCallback } from '@/profiler';
 
 export const LoginPage = () => {
   const { register, handleSubmit, errors, loading, apiError, onSubmit } = useLogin();
@@ -26,19 +29,23 @@ export const LoginPage = () => {
             <span className="block sm:inline">{apiError}</span>
           </div>
         )}
-        <AuthInput
-          label='Correo Electrónico'
-          data='email'
-          register={register}
-          errors={errors} 
-          rules={{
-            required: 'El correo electronico es obligatorio',
-            pattern: {
-              value: /^\S+@\S+\.\S+$/,
-              message: "Correo electrónico no válido",
-            }
-          }}
-        />
+
+        <Profiler id="MiComponente" onRender={onRenderCallback}> // 
+          <AuthInput
+            label='Correo Electrónico'
+            data='email'
+            register={register}
+            errors={errors} 
+            rules={{
+              required: 'El correo electronico es obligatorio',
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: "Correo electrónico no válido",
+              }
+            }}
+          />
+        </Profiler>
+
         <AuthInput
           type='password'
           label='Contraseña'
@@ -57,7 +64,7 @@ export const LoginPage = () => {
       <div className="text-center">
         <p>
           ¿No recuerda su contraseña? haga click{' '}
-          <Link to={'/recover/initiate'} className="text-blue-500 font-bold">
+          <Link to={listRoutes.auth.initiate} className="text-blue-500 font-bold">
             Aqui
           </Link>
         </p>

@@ -1,5 +1,6 @@
 import { useAuth } from '@/context/AuthContext';
 import { Navigate, Outlet } from 'react-router-dom';
+import listRoutes from './list';
 
 export const PublicRoutes = () => {
   const { auth, loading } = useAuth();
@@ -12,5 +13,5 @@ export const PublicRoutes = () => {
     );
   }
 
-  return !auth ? <Outlet /> : <Navigate to={'/dashboard'} replace />;
+  return !auth ? <Outlet /> : <Navigate to={listRoutes.dashboard.home} replace />;
 };

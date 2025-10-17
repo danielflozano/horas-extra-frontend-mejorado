@@ -5,9 +5,9 @@ import { HorasExtraApp } from './HorasExtraApp';
 import './index.css';
 
 createRoot(document.getElementById('root')).render(
-  // <StrictMode>
+  <StrictMode>
     <AuthProvider>
       <HorasExtraApp />
     </AuthProvider>
-  // </StrictMode>
+  </StrictMode>
 );

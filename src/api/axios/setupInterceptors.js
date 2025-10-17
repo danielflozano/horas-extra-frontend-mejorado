@@ -1,7 +1,7 @@
 import { authService } from '@/features/auth/services/authService';
 import { apiClient } from './apiClient';
 
-export const setupInterceptors = (logout) => {
+export const setupInterceptors = (logout, setAuth) => {
   const token = localStorage.getItem('accessToken');
   if (token) {
     apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;

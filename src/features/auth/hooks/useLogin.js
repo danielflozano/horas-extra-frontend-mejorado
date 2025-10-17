@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '@/context/AuthContext';
 import { authService } from '../services/authService';
+import listRoutes from '@/routes/list';
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export const useLogin = () => {
       const response = await authService.login(data);
       console.log(response);      
       login(response.token, response.user);
-      navigate('/dashboard');
+      navigate(listRoutes.dashboard.home);
     } catch (error) {
       console.error(error);
       setApiError(error.message);
