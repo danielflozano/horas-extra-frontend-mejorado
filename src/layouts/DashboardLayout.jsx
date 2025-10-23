@@ -1,15 +1,9 @@
 import { Link, Outlet } from 'react-router-dom';
-import {
-  UserCheck,
-  House,
-  ClipboardClock,
-  Users,
-  NotebookPen,
-} from 'lucide-react';
+import { UserCheck, House, ClipboardClock, Users, NotebookPen } from 'lucide-react';
 import { GlobalButton } from '@/components';
 import { useAuth } from '@/context/AuthContext';
-import listRoutes from '@/routes/list';
 import logo from '../assets/logoepa.png';
+import { aseoRoutesList } from '@/routes';
 
 const currentYear = new Date().getFullYear();
 
@@ -28,7 +22,7 @@ export const DashboardLayout = () => {
           <div className="text-epaColor1 font-medium">
             <Link
               className="flex gap-2 items-center transition-transform duration-300 hover:translate-x-4"
-              to={listRoutes.dashboard.home}
+              to={aseoRoutesList.aseoDashboard}
             >
               <House size={20} />
               Inicio
@@ -37,7 +31,7 @@ export const DashboardLayout = () => {
           <div className="text-epaColor1 font-medium">
             <Link
               className="flex gap-2 items-center transition-transform duration-300 hover:translate-x-4"
-              to={listRoutes.dashboard.overtimes}
+              to={aseoRoutesList.overtimes}
             >
               <ClipboardClock size={20} />
               Horas Extra
@@ -46,7 +40,7 @@ export const DashboardLayout = () => {
           <div className="text-epaColor1 font-medium">
             <Link
               className="flex gap-2 items-center transition-transform duration-300 hover:translate-x-4"
-              to={listRoutes.dashboard.workers}
+              to={aseoRoutesList.workers}
             >
               <Users size={20} />
               Funcionarios
@@ -55,14 +49,14 @@ export const DashboardLayout = () => {
           <div className="text-epaColor1 font-medium">
             <Link
               className="flex gap-2 items-center transition-transform duration-300 hover:translate-x-4"
-              to={listRoutes.dashboard.reports}
+              to={aseoRoutesList.reports}
             >
               <NotebookPen size={20} />
               Reportes
             </Link>
           </div>
         </nav>
-        <GlobalButton variant="danger" onClick={logout} className="p-1">
+        <GlobalButton variant="danger" onClick={logout} className="p-1.5 w-3/4 block mx-auto">
           Cerrar Sesión
         </GlobalButton>
       </div>

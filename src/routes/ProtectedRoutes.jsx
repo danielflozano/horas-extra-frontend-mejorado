@@ -1,6 +1,6 @@
 import { useAuth } from '@/context/AuthContext';
 import { Navigate, Outlet } from 'react-router-dom';
-import listRoutes from './list';
+import { authRoutesList } from './list';
 
 export const ProtectedRoutes = () => {
   const { auth, loading } = useAuth();
@@ -13,5 +13,5 @@ export const ProtectedRoutes = () => {
     );
   }
 
-  return auth ? <Outlet /> : <Navigate to={listRoutes.auth.login} replace />;
+  return auth ? <Outlet /> : <Navigate to={ authRoutesList.login } replace />;
 };

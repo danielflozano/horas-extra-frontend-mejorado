@@ -1,4 +1,4 @@
-import { authService } from '@/features/auth/services/authService';
+import { authService } from '@/modules/auth/services/authService';
 import { apiClient } from './apiClient';
 
 export const setupInterceptors = (logout, setAuth) => {

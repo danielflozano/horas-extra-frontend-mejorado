@@ -1,9 +1,9 @@
 export const handleAxiosError = (error, defaultMessage) => {
   // El backend responde con un mensaje explícito
-  if (error.response?.data?.msg) {
-    return error.response.data.msg;
-  }
+  if (error.response?.data?.msg) return error.response.data.msg;
 
+  if (error.response?.data?.message) return error.response.data.message;
+  
   // El backend responde con status pero sin message
   if (error.response?.status) {
     const status = error.response.status;
