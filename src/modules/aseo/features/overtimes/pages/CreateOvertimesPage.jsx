@@ -1,6 +1,5 @@
 import { GlobalButton, GlobalInput } from '@/components';
 import { useCreateOvertimes } from '../hooks/useCreateOvertimes';
-import { GlobalInputSelect } from '@/components/ui/GlobalInputSelect';
 
 export const CreateOvertimesPage = () => {
   const {
@@ -25,18 +24,23 @@ export const CreateOvertimesPage = () => {
           className="flex flex-col gap-5 bg-white p-5 w-1/2 rounded-xl shadow-2xl"
         >
           <div>
-            <GlobalInputSelect
+            <GlobalInput
+              as="select"
               label="Funcionario"
-              option="Seleccione un funcionario"
               data="FuncionarioAsignado"
-              // dataArray={} TODO: Ingresar el arreglo
-              // valueField={nombre_completo} TODO
               register={registerHoras}
               errors={errorsHoras}
               rules={{
                 required: 'Debe Seleccionar un Funcionario',
               }}
-            />
+            >
+              <option value="">Seleccione un funcionario</option>
+              {/* {funcionarios.map((f) => (
+                <option key={f._id} value={f_id}>
+                  {f.nombre_completo}
+                </option>
+              ))} */}
+            </GlobalInput>
           </div>
           <div className="grid grid-cols-2 gap-5">
             <div className="flex justify-between items-center">
